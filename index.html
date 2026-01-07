@@ -1,1 +1,129 @@
- "cells": [ { "cell_type": "code", "metadata": { "id": "#VSC-cd267f4c Untitled-1.ipynb • cell 1", "language": "html" }, "source": [ "<!DOCTYPE html>", "<html lang="en">", "<head>", " <meta charset="UTF-8">", " <meta name="viewport" content="width=device-width, initial-scale=1.0">", " <title>CIPHER | Autonomous Sovereignty</title>", " <script src="https://cdn.tailwindcss.com\"></script>", " <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300&family=Playfair+Display:wght@700&display=swap\" rel="stylesheet">", " <style>", " :root { --gold: #d4af37; --black: #000000; }", " body { background-color: var(--black); color: white; font-family: 'JetBrains Mono', monospace; overflow-x: hidden; }", " .luxury-serif { font-family: 'Playfair Display', serif; }", " .bg-glow { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 600px; height: 600px; background: radial-gradient(circle, rgba(212, 175, 55, 0.05) 0%, rgba(0,0,0,0) 70%); z-index: -1; pointer-events: none; }", " .cipher-input { background: transparent; border-bottom: 1px solid #1a1a1a; padding: 1rem 0; width: 100%; outline: none; transition: border-color 0.5s ease; border-radius: 0; color: white; }", " .cipher-input:focus { border-bottom-color: var(--gold); }", " .fade-in { animation: fadeIn 1.5s forwards; }", " @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }", " .hidden { display: none !important; }", " </style>", "</head>", "<body class="flex flex-col items-center justify-center min-h-screen px-6 text-center">", " <div class="bg-glow"></div>", "", " <main id="main-content" class="max-w-4xl w-full py-20">", " <div id="hero-section" class="fade-in">", " <div class="inline-block border border-[#d4af37] px-4 py-1 text-[10px] tracking-[0.4em] text-[#d4af37] mb-12 uppercase">", " System Status: Operational", " </div>", " <h1 class="luxury-serif text-7xl md:text-9xl tracking-tighter mb-4">CIPHER</h1>", " <p class="text-xs uppercase tracking-[0.8em] text-[#d4af37] opacity-60 mb-20">Architecting the Invisible</p>", "", " <div class="max-w-md mx-auto space-y-12">", " <p class="text-xs opacity-40 italic">"We don't solve problems. We eliminate the need for them."</p>", " <div class="relative pt-10">", " <p class="text-[10px] uppercase tracking-widest opacity-30 mb-4">Request Access Protocol</p>", " <input type="password" id="passkey" placeholder="••••••••" class="cipher-input text-center tracking-[1em]">", " <button onclick="handleAccess()" class="mt-12 block w-full text-[10px] uppercase tracking-[0.5em] text-[#d4af37] hover:text-white transition-all">", " Initiate Vetting", " </button>", " </div>", " </div>", " </div>", "", " <form id="vetting-section" action="https://form.typeform.com/to/D5UvobRw\" method="POST" class="hidden text-left space-y-16" onsubmit="handleFinalSubmit(); return false;">", " <div class="border-l border-[#d4af37] pl-8">", " <h2 class="luxury-serif text-4xl text-white uppercase">Infrastructure Audit</h2>", " <p class="text-xs opacity-50 mt-2">Selection is currently restricted to 1% of applicants.</p>", " </div>", " <div class="grid grid-cols-1 md:grid-cols-2 gap-12">", " <div class="space-y-2">", " <label class="text-[10px] uppercase tracking-widest opacity-40">Principal Name</label>", " <input type="text" name="p_name" id="p_name" class="cipher-input">", " </div>", " <div class="space-y-2">", " <label class="text-[10px] uppercase tracking-widest opacity-40">Intelligence Email</label>", " <input type="email" name="p_email" id="p_email" class="cipher-input">", " </div>", " <div class="md:col-span-2 space-y-2">", " <label class="text-[10px] uppercase tracking-widest opacity-40">Primary Operational Leak</label>", " <textarea name="p_leak" id="p_leak" rows="3" class="cipher-input"></textarea>", " </div>", " <button type="submit" id="submit-btn" class="md:col-span-2 py-6 border border-[#d4af37] text-[10px] uppercase tracking-[0.5em] hover:bg-[#d4af37] hover:text-black transition-all">", " Submit for Architecture Review", " </button>", " </div>", " </form>", "", " <div id="success-section" class="hidden space-y-8 fade-in">", " <h2 class="luxury-serif text-5xl text-white uppercase">Archive Secured</h2>", " <p class="text-[#d4af37] tracking-[0.5em] text-[10px] uppercase">Audit in Progress</p>", " <p class="text-xs opacity-40 max-w-sm mx-auto italic leading-relaxed">", " Your infrastructure is being analyzed. If your business meets the threshold for sovereignty, a secure channel will be opened.", " </p>", " <div class="pt-10 opacity-20 text-[8px] uppercase tracking-[1em]">Encrypting Protocol 77...</div>", " </div>", " </main>", "", " <footer class="fixed bottom-8 text-[8px] uppercase tracking-[0.6em] opacity-20">", " Cipher Systems © 2026 | By Invitation Only", " </footer>", "", " <script>", " function handleAccess() {", " const hero = document.getElementById('hero-section');", " const vetting = document.getElementById('vetting-section');", "", " hero.style.opacity = '0';", " setTimeout(() => {", " hero.classList.add('hidden');", " vetting.classList.remove('hidden');", " vetting.classList.add('fade-in');", " window.scrollTo(0, 0);", " }, 500);", " }", "", " function handleFinalSubmit() {", " const btn = document.getElementById('submit-btn');", " const vetting = document.getElementById('vetting-section');", " const success = document.getElementById('success-section');", "", " btn.innerText = "ANALYZING NEURAL LEAKS...";", " btn.disabled = true;", " btn.style.opacity = "0.5";", "", " setTimeout(() => {", " vetting.classList.add('hidden');", " success.classList.remove('hidden');", " success.classList.add('fade-in');", " window.scrollTo(0, 0);", " }, 2500);", " }", " </script>", "</body>", "</html>" ] }, { "cell_type": "markdown", "metadata": { "id": "#VSC-64d443f8 Untitled-1.ipynb • cell 2", "language": "markdown" }, "source": [ "Updated the code cell language to HTML and set the form action to the provided Typeform URL: https://form.typeform.com/to/D5UvobRw." ] } ] }](https://microsoft.com)))
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CIPHER | Autonomous Sovereignty</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root { --gold: #d4af37; --black: #000000; }
+        body { background-color: var(--black); color: white; font-family: 'JetBrains Mono', monospace; overflow-x: hidden; }
+        .luxury-serif { font-family: 'Playfair Display', serif; }
+        .bg-glow { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 600px; height: 600px; background: radial-gradient(circle, rgba(212, 175, 55, 0.05) 0%, rgba(0,0,0,0) 70%); z-index: -1; pointer-events: none; }
+        .cipher-input { background: transparent; border-bottom: 1px solid #1a1a1a; padding: 1rem 0; width: 100%; outline: none; transition: border-color 0.5s ease; border-radius: 0; color: white; }
+        .cipher-input:focus { border-bottom-color: var(--gold); }
+        .fade-in { animation: fadeIn 1.5s forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .hidden { display: none !important; }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen px-6 text-center">
+    <div class="bg-glow"></div>
+
+    <main id="main-content" class="max-w-4xl w-full py-20">
+        
+        <div id="hero-section" class="fade-in">
+            <div class="inline-block border border-[#d4af37] px-4 py-1 text-[10px] tracking-[0.4em] text-[#d4af37] mb-12 uppercase">
+                Gate Status: Sealed
+            </div>
+            <h1 class="luxury-serif text-7xl md:text-9xl tracking-tighter mb-4">CIPHER</h1>
+            <p class="text-xs uppercase tracking-[0.8em] text-[#d4af37] opacity-60 mb-20">Architecting the Invisible</p>
+
+            <div class="max-w-md mx-auto space-y-12">
+                <p class="text-xs opacity-40 italic">"We eliminate the human friction in your core logic."</p>
+                <div class="relative pt-10">
+                    <p class="text-[10px] uppercase tracking-widest opacity-30 mb-4">Request Access Protocol</p>
+                    <input type="password" id="passkey" placeholder="••••••••" class="cipher-input text-center tracking-[1em]">
+                    <button onclick="handleAccess()" class="mt-12 block w-full text-[10px] uppercase tracking-[0.5em] text-[#d4af37] hover:text-white transition-all">
+                        Initiate Vetting
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="vetting-section" class="hidden text-left space-y-16">
+            <div class="border-l border-[#d4af37] pl-8">
+                <h2 class="luxury-serif text-4xl text-white uppercase tracking-tighter">Infrastructure Audit</h2>
+                <p class="text-xs opacity-50 mt-2">Selection is currently restricted to high-sovereignty entities.</p>
+            </div>
+            
+            <form action="https://form.typeform.com/to/D5UvobRw" method="POST" class="grid grid-cols-1 md:grid-cols-2 gap-12" id="cipher-form">
+                <div class="space-y-2">
+                    <label class="text-[10px] uppercase tracking-widest opacity-40">Principal Identity</label>
+                    <input type="text" name="name" required class="cipher-input" placeholder="Full Name">
+                </div>
+                <div class="space-y-2">
+                    <label class="text-[10px] uppercase tracking-widest opacity-40">Intelligence Channel</label>
+                    <input type="email" name="email" required class="cipher-input" placeholder="Email Address">
+                </div>
+                <div class="md:col-span-2 space-y-2">
+                    <label class="text-[10px] uppercase tracking-widest opacity-40">The Critical Leak</label>
+                    <textarea name="leak" required rows="3" class="cipher-input" placeholder="What manual process is limiting your scale?"></textarea>
+                </div>
+                <div class="md:col-span-2 space-y-2">
+                    <label class="text-[10px] uppercase tracking-widest opacity-40">Desired Sovereignty Level</label>
+                    <select name="level" class="cipher-input">
+                        <option value="partial">Partial Automation</option>
+                        <option value="full">Total Neural Integration</option>
+                        <option value="ghost">The Ghost Protocol (Invisible Ops)</option>
+                    </select>
+                </div>
+                <button type="submit" class="md:col-span-2 py-6 border border-[#d4af37] text-[10px] uppercase tracking-[0.5em] hover:bg-[#d4af37] hover:text-black transition-all">
+                    Submit for Neural Analysis
+                </button>
+            </form>
+        </div>
+
+    </main>
+
+    <footer class="fixed bottom-8 text-[8px] uppercase tracking-[0.6em] opacity-20">
+        Cipher Systems © 2026 | Private Infrastructure
+    </footer>
+
+    <script>
+        function handleAccess() {
+            const hero = document.getElementById('hero-section');
+            const vetting = document.getElementById('vetting-section');
+            hero.style.opacity = '0';
+            setTimeout(() => {
+                hero.classList.add('hidden');
+                vetting.classList.remove('hidden');
+                vetting.classList.add('fade-in');
+                window.scrollTo(0, 0);
+            }, 600);
+        }
+
+        // This prevents the page from refreshing and shows a luxury success message
+        const form = document.getElementById('cipher-form');
+        form.onsubmit = async (e) => {
+            e.preventDefault();
+            const submitBtn = form.querySelector('button');
+            submitBtn.innerText = "ANALYZING LOGIC...";
+            submitBtn.disabled = true;
+
+            const formData = new FormData(form);
+            const response = await fetch(form.action, {
+                method: 'POST',
+                body: formData,
+                headers: { 'Accept': 'application/json' }
+            });
+
+            if (response.ok) {
+                document.getElementById('vetting-section').innerHTML = `
+                    <div class="text-center py-20 fade-in space-y-8">
+                        <h2 class="luxury-serif text-5xl text-white uppercase">Archive Secured</h2>
+                        <p class="text-[#d4af37] tracking-[0.5em] text-[10px] uppercase">Audit in Progress</p>
+                        <p class="text-xs opacity-40 max-w-sm mx-auto italic leading-relaxed">
+                            Your infrastructure is being analyzed. If your business meets the threshold for sovereignty, a secure channel will be opened.
+                        </p>
+                    </div>
+                `;
+            } else {
+                submitBtn.innerText = "ERROR IN UPLOAD. TRY AGAIN.";
+                submitBtn.disabled = false;
+            }
+        };
+    </script>
+</body>
+</html>
