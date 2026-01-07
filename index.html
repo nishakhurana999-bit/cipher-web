@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CIPHER | Autonomous Sovereignty</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #d4af37;
+            --black: #000000;
+            --matte: #0a0a0a;
+        }
+        body {
+            background-color: var(--black);
+            color: white;
+            font-family: 'JetBrains Mono', monospace;
+            overflow-x: hidden;
+        }
+        .luxury-serif { font-family: 'Playfair Display', serif; }
+        
+        /* Cinematic Background Gradient */
+        .bg-glow {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.03) 0%, rgba(0,0,0,0) 70%);
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Subtle Animation for text reveal */
+        .reveal-text {
+            opacity: 0;
+            filter: blur(10px);
+            transform: translateY(20px);
+            transition: all 1.5s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        .reveal-text.active {
+            opacity: 1;
+            filter: blur(0);
+            transform: translateY(0);
+        }
+
+        /* Input styling */
+        .cipher-input {
+            background: transparent;
+            border-bottom: 1px solid #1a1a1a;
+            padding: 1rem 0;
+            width: 100%;
+            transition: border-color 0.5s ease;
+            outline: none;
+        }
+        .cipher-input:focus {
+            border-bottom-color: var(--gold);
+        }
+
+        /* Custom selection color */
+        ::selection {
+            background: var(--gold);
+            color: black;
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center justify-center min-h-screen px-6 text-center">
+    
+    <div class="bg-glow"></div>
+
+    <main class="max-w-4xl w-full">
+        
+        <section id="hero" class="space-y-6">
+            <div class="mb-12 reveal-text active">
+                <div class="inline-block border border-[#d4af37] px-4 py-1 text-[10px] tracking-[0.4em] text-[#d4af37] mb-8">
+                    SYSTEM STATUS: ACTIVE
+                </div>
+                <h1 class="luxury-serif text-7xl md:text-9xl tracking-tighter mb-4">CIPHER</h1>
+                <p class="text-xs uppercase tracking-[0.8em] text-[#d4af37] opacity-60">Architecting the Invisible</p>
+            </div>
+
+            <div class="reveal-text delay-200 active max-w-xl mx-auto py-12 border-y border-neutral-900">
+                <p class="text-sm md:text-base leading-relaxed opacity-80 italic">
+                    "Efficiency is for the ordinary. Sovereignty is for the elite. 
+                    We replace labor with neural business systems that don't sleep, don't fail, and don't compromise."
+                </p>
+            </div>
+
+            <div id="gate" class="reveal-text delay-500 active mt-20 space-y-8">
+                <p class="text-[10px] uppercase tracking-widest opacity-40">Enter Access Protocol</p>
+                <div class="max-w-md mx-auto relative">
+                    <input type="password" id="accessCode" placeholder="••••••••" class="cipher-input text-center tracking-[1em]">
+                    <button onclick="checkAccess()" class="mt-12 group">
+                        <span class="block text-[10px] uppercase tracking-[0.5em] text-[#d4af37] group-hover:text-white transition-colors duration-500">
+                            Request Invitation
+                        </span>
+                        <div class="h-[1px] w-0 group-hover:w-full bg-[#d4af37] transition-all duration-700 mt-2 mx-auto"></div>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section id="application" class="hidden text-left mt-32 space-y-16 pb-32">
+            <div class="border-l border-[#d4af37] pl-8">
+                <h2 class="luxury-serif text-4xl text-white">Vetting Protocol</h2>
+                <p class="text-xs opacity-50 mt-2">Selection is currently restricted to 1% of applicants.</p>
+            </div>
+
+            <form class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div class="space-y-2">
+                    <label class="text-[10px] uppercase tracking-widest opacity-40">Principal Name</label>
+                    <input type="text" class="cipher-input">
+                </div>
+                <div class="space-y-2">
+                    <label class="text-[10px] uppercase tracking-widest opacity-40">Entity Revenue Floor</label>
+                    <input type="text" placeholder="$10M+" class="cipher-input">
+                </div>
+                <div class="md:col-span-2 space-y-2">
+                    <label class="text-[10px] uppercase tracking-widest opacity-40">The Critical Friction</label>
+                    <textarea rows="4" placeholder="What manual process is limiting your sovereignty?" class="cipher-input"></textarea>
+                </div>
+                <button type="button" class="md:col-span-2 py-6 border border-[#d4af37] text-[10px] uppercase tracking-[0.5em] hover:bg-[#d4af37] hover:text-black transition-all duration-700">
+                    Submit for Architecture Review
+                </button>
+            </form>
+        </section>
+
+    </main>
+
+    <footer class="fixed bottom-8 text-[8px] uppercase tracking-[0.6em] opacity-30">
+        Cipher Systems © 2026 | Private Access Only
+    </footer>
+
+    <script>
+        function checkAccess() {
+            const input = document.getElementById('accessCode');
+            const hero = document.getElementById('hero');
+            const application = document.getElementById('application');
+
+            // Visual feedback of "Processing"
+            input.placeholder = "VERIFYING...";
+            input.value = "";
+            
+            setTimeout(() => {
+                hero.classList.add('opacity-20');
+                hero.style.pointerEvents = 'none';
+                application.classList.remove('hidden');
+                application.classList.add('fade-in');
+                window.scrollTo({ top: application.offsetTop, behavior: 'smooth' });
+            }, 1200);
+        }
+
+        // Trigger animations on load
+        window.onload = () => {
+            const reveals = document.querySelectorAll('.reveal-text');
+            reveals.forEach(el => el.classList.add('active'));
+        };
+    </script>
+</body>
+</html>
