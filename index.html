@@ -13,7 +13,7 @@
         .bg-glow { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 600px; height: 600px; background: radial-gradient(circle, rgba(212, 175, 55, 0.05) 0%, rgba(0,0,0,0) 70%); z-index: -1; pointer-events: none; }
         .cipher-input { background: transparent; border-bottom: 1px solid #1a1a1a; padding: 1rem 0; width: 100%; outline: none; transition: border-color 0.5s ease; border-radius: 0; color: white; }
         .cipher-input:focus { border-bottom-color: var(--gold); }
-        .fade-in { animation: fadeIn 1.5s forwards; }
+        .fade-in { animation: fadeIn 1.2s forwards; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         .hidden { display: none !important; }
     </style>
@@ -25,13 +25,13 @@
         
         <div id="hero-section" class="fade-in">
             <div class="inline-block border border-[#d4af37] px-4 py-1 text-[10px] tracking-[0.4em] text-[#d4af37] mb-12 uppercase">
-                Gate Status: Sealed
+                Connection: Encrypted
             </div>
             <h1 class="luxury-serif text-7xl md:text-9xl tracking-tighter mb-4">CIPHER</h1>
             <p class="text-xs uppercase tracking-[0.8em] text-[#d4af37] opacity-60 mb-20">Architecting the Invisible</p>
 
             <div class="max-w-md mx-auto space-y-12">
-                <p class="text-xs opacity-40 italic">"We eliminate the human friction in your core logic."</p>
+                <p class="text-xs opacity-40 italic">"Efficiency is the baseline. Sovereignty is the goal."</p>
                 <div class="relative pt-10">
                     <p class="text-[10px] uppercase tracking-widest opacity-30 mb-4">Request Access Protocol</p>
                     <input type="password" id="passkey" placeholder="••••••••" class="cipher-input text-center tracking-[1em]">
@@ -45,10 +45,10 @@
         <div id="vetting-section" class="hidden text-left space-y-16">
             <div class="border-l border-[#d4af37] pl-8">
                 <h2 class="luxury-serif text-4xl text-white uppercase tracking-tighter">Infrastructure Audit</h2>
-                <p class="text-xs opacity-50 mt-2">Selection is currently restricted to high-sovereignty entities.</p>
+                <p class="text-xs opacity-50 mt-2">Selection is currently restricted to 1% of applicants.</p>
             </div>
             
-            <form action="https://form.typeform.com/to/D5UvobRw" method="POST" class="grid grid-cols-1 md:grid-cols-2 gap-12" id="cipher-form">
+            <form action="https://form.typeform.com/to/D5UvobRw" method="POST" id="cipher-form" class="grid grid-cols-1 md:grid-cols-2 gap-12">
                 <div class="space-y-2">
                     <label class="text-[10px] uppercase tracking-widest opacity-40">Principal Identity</label>
                     <input type="text" name="name" required class="cipher-input" placeholder="Full Name">
@@ -61,20 +61,19 @@
                     <label class="text-[10px] uppercase tracking-widest opacity-40">The Critical Leak</label>
                     <textarea name="leak" required rows="3" class="cipher-input" placeholder="What manual process is limiting your scale?"></textarea>
                 </div>
-                <div class="md:col-span-2 space-y-2">
-                    <label class="text-[10px] uppercase tracking-widest opacity-40">Desired Sovereignty Level</label>
-                    <select name="level" class="cipher-input">
-                        <option value="partial">Partial Automation</option>
-                        <option value="full">Total Neural Integration</option>
-                        <option value="ghost">The Ghost Protocol (Invisible Ops)</option>
-                    </select>
-                </div>
-                <button type="submit" class="md:col-span-2 py-6 border border-[#d4af37] text-[10px] uppercase tracking-[0.5em] hover:bg-[#d4af37] hover:text-black transition-all">
+                <button type="submit" id="submit-btn" class="md:col-span-2 py-6 border border-[#d4af37] text-[10px] uppercase tracking-[0.5em] hover:bg-[#d4af37] hover:text-black transition-all">
                     Submit for Neural Analysis
                 </button>
             </form>
         </div>
 
+        <div id="success-section" class="hidden space-y-8 fade-in">
+            <h2 class="luxury-serif text-5xl text-white uppercase">Archive Secured</h2>
+            <p class="text-[#d4af37] tracking-[0.5em] text-[10px] uppercase">Audit in Progress</p>
+            <p class="text-xs opacity-40 max-w-sm mx-auto italic leading-relaxed">
+                Your infrastructure is being analyzed. If your business meets the threshold for sovereignty, a secure channel will be opened.
+            </p>
+        </div>
     </main>
 
     <footer class="fixed bottom-8 text-[8px] uppercase tracking-[0.6em] opacity-20">
@@ -83,46 +82,22 @@
 
     <script>
         function handleAccess() {
-            const hero = document.getElementById('hero-section');
-            const vetting = document.getElementById('vetting-section');
-            hero.style.opacity = '0';
-            setTimeout(() => {
-                hero.classList.add('hidden');
-                vetting.classList.remove('hidden');
-                vetting.classList.add('fade-in');
-                window.scrollTo(0, 0);
-            }, 600);
+            document.getElementById('hero-section').classList.add('hidden');
+            document.getElementById('vetting-section').classList.remove('hidden');
+            document.getElementById('vetting-section').classList.add('fade-in');
+            window.scrollTo(0, 0);
         }
 
-        // This prevents the page from refreshing and shows a luxury success message
         const form = document.getElementById('cipher-form');
-        form.onsubmit = async (e) => {
-            e.preventDefault();
-            const submitBtn = form.querySelector('button');
-            submitBtn.innerText = "ANALYZING LOGIC...";
-            submitBtn.disabled = true;
-
-            const formData = new FormData(form);
-            const response = await fetch(form.action, {
-                method: 'POST',
-                body: formData,
-                headers: { 'Accept': 'application/json' }
-            });
-
-            if (response.ok) {
-                document.getElementById('vetting-section').innerHTML = `
-                    <div class="text-center py-20 fade-in space-y-8">
-                        <h2 class="luxury-serif text-5xl text-white uppercase">Archive Secured</h2>
-                        <p class="text-[#d4af37] tracking-[0.5em] text-[10px] uppercase">Audit in Progress</p>
-                        <p class="text-xs opacity-40 max-w-sm mx-auto italic leading-relaxed">
-                            Your infrastructure is being analyzed. If your business meets the threshold for sovereignty, a secure channel will be opened.
-                        </p>
-                    </div>
-                `;
-            } else {
-                submitBtn.innerText = "ERROR IN UPLOAD. TRY AGAIN.";
-                submitBtn.disabled = false;
-            }
+        form.onsubmit = function() {
+            const btn = document.getElementById('submit-btn');
+            btn.innerText = "ANALYZING NEURAL LEAKS...";
+            btn.style.opacity = "0.5";
+            btn.disabled = true;
+            
+            // Allow the form to submit to Formspree naturally
+            // To show the success screen without a page refresh, we let Formspree handle the redirect
+            // OR you can use their AJAX settings in the Formspree dashboard.
         };
     </script>
 </body>
