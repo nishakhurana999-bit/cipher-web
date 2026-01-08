@@ -23,32 +23,30 @@
 
     <main id="main-content" class="max-w-4xl w-full py-20">
         <div id="hero-section" class="fade-in">
-            <div class="inline-block border border-[#d4af37] px-4 py-1 text-[10px] tracking-[0.4em] text-[#d4af37] mb-12 uppercase">Connection: Secured</div>
             <h1 class="luxury-serif text-7xl md:text-9xl tracking-tighter mb-4">CIPHER</h1>
             <p class="text-xs uppercase tracking-[0.8em] text-[#d4af37] opacity-60 mb-20">Architecting the Invisible</p>
             <div class="max-w-md mx-auto space-y-12">
-                <input type="password" id="passkey" placeholder="••••••••" class="cipher-input text-center tracking-[1em]">
+                <input type="password" placeholder="••••••••" class="cipher-input text-center tracking-[1em]">
                 <button onclick="handleAccess()" class="mt-12 block w-full text-[10px] uppercase tracking-[0.5em] text-[#d4af37] hover:text-white transition-all">Initiate Vetting</button>
             </div>
         </div>
 
         <div id="vetting-section" class="hidden text-left space-y-16">
             <div class="border-l border-[#d4af37] pl-8">
-                <h2 class="luxury-serif text-4xl text-white uppercase tracking-tighter">Infrastructure Audit</h2>
-                <p class="text-xs opacity-50 mt-2">Submit data points for neural analysis.</p>
+                <h2 class="luxury-serif text-4xl text-white">Infrastructure Audit</h2>
+                <p class="text-xs opacity-50">Provide data for neural analysis.</p>
             </div>
-            <form id="cipher-form" action="https://form.typeform.com/to/D5UvobRw" method="POST" class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                <input type="text" name="name" required class="cipher-input" placeholder="Principal Name">
-                <input type="email" name="email" required class="cipher-input" placeholder="Intelligence Email">
-                <textarea name="leak" required rows="3" class="md:col-span-2 cipher-input" placeholder="Operational Friction / Leak"></textarea>
-                <button type="submit" id="submit-btn" class="md:col-span-2 py-6 border border-[#d4af37] text-[10px] uppercase tracking-[0.5em] hover:bg-[#d4af37] hover:text-black transition-all">Submit for Review</button>
+            <form action="https://cipher-black.vercel.app" method="POST" class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <input type="text" name="Name" required class="cipher-input" placeholder="Principal Name">
+                <input type="email" name="Email" required class="cipher-input" placeholder="Intelligence Email">
+                <textarea name="Leak" required rows="3" class="md:col-span-2 cipher-input" placeholder="Operational Friction"></textarea>
+                
+                <input type="hidden" name="_next" value="https://YOUR_VERCEL_LINK_HERE">
+                
+                <button type="submit" class="md:col-span-2 py-6 border border-[#d4af37] text-[10px] uppercase tracking-[0.5em] hover:bg-[#d4af37] hover:text-black transition-all">
+                    Submit for Review
+                </button>
             </form>
-        </div>
-
-        <div id="success-section" class="hidden space-y-8 fade-in">
-            <h2 class="luxury-serif text-5xl text-white uppercase">Archive Secured</h2>
-            <p class="text-[#d4af37] tracking-[0.5em] text-[10px] uppercase">Audit in Progress</p>
-            <p class="text-xs opacity-40 max-w-sm mx-auto italic">The Architect will analyze your leak. Silence is expected.</p>
         </div>
     </main>
 
@@ -58,29 +56,6 @@
             document.getElementById('vetting-section').classList.remove('hidden');
             document.getElementById('vetting-section').classList.add('fade-in');
         }
-
-        const form = document.getElementById('cipher-form');
-        form.addEventListener("submit", async function(event) {
-            event.preventDefault();
-            const btn = document.getElementById('submit-btn');
-            btn.innerText = "ANALYZING NEURAL LEAKS...";
-            btn.disabled = true;
-
-            const data = new FormData(event.target);
-            fetch(event.target.action, {
-                method: form.method,
-                body: data,
-                headers: { 'Accept': 'application/json' }
-            }).then(response => {
-                if (response.ok) {
-                    document.getElementById('vetting-section').classList.add('hidden');
-                    document.getElementById('success-section').classList.remove('hidden');
-                } else {
-                    btn.innerText = "ERROR. TRY AGAIN.";
-                    btn.disabled = false;
-                }
-            });
-        });
     </script>
 </body>
 </html>
