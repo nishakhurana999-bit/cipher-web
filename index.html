@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
     <style>
         :root { --gold: #d4af37; --black: #000000; }
-        body { background-color: var(--black); color: white; font-family: 'JetBrains Mono', monospace; overflow-x: hidden; }
+        body { background-color: var(--black); color: white; font-family: 'JetBrains Mono', monospace; overflow: hidden; margin: 0; }
         .luxury-serif { font-family: 'Playfair Display', serif; }
         .bg-glow { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 600px; height: 600px; background: radial-gradient(circle, rgba(212, 175, 55, 0.05) 0%, rgba(0,0,0,0) 70%); z-index: -1; pointer-events: none; }
         .cipher-input { background: transparent; border-bottom: 1px solid #1a1a1a; padding: 1rem 0; width: 100%; outline: none; transition: border-color 0.5s ease; border-radius: 0; color: white; }
@@ -21,41 +21,68 @@
 <body class="flex flex-col items-center justify-center min-h-screen px-6 text-center">
     <div class="bg-glow"></div>
 
+    <iframe name="hidden_iframe" id="hidden_iframe" style="display:none;" onload="if(submitted) { showSuccess(); }"></iframe>
+
     <main id="main-content" class="max-w-4xl w-full py-20">
+        
         <div id="hero-section" class="fade-in">
             <h1 class="luxury-serif text-7xl md:text-9xl tracking-tighter mb-4">CIPHER</h1>
             <p class="text-xs uppercase tracking-[0.8em] text-[#d4af37] opacity-60 mb-20">Architecting the Invisible</p>
             <div class="max-w-md mx-auto space-y-12">
-                <input type="password" placeholder="••••••••" class="cipher-input text-center tracking-[1em]">
+                <input type="password" id="entry-code" placeholder="••••••••" class="cipher-input text-center tracking-[1em]">
                 <button onclick="handleAccess()" class="mt-12 block w-full text-[10px] uppercase tracking-[0.5em] text-[#d4af37] hover:text-white transition-all">Initiate Vetting</button>
             </div>
         </div>
 
         <div id="vetting-section" class="hidden text-left space-y-16">
             <div class="border-l border-[#d4af37] pl-8">
-                <h2 class="luxury-serif text-4xl text-white">Infrastructure Audit</h2>
-                <p class="text-xs opacity-50">Provide data for neural analysis.</p>
+                <h2 class="luxury-serif text-4xl text-white uppercase">Infrastructure Audit</h2>
+                <p class="text-xs opacity-50 mt-2">Neural analysis of operational friction.</p>
             </div>
-            <form action="https://cipher-black.vercel.app" method="POST" class="grid grid-cols-1 md:grid-cols-2 gap-12">
-                <input type="text" name="Name" required class="cipher-input" placeholder="Principal Name">
-                <input type="email" name="Email" required class="cipher-input" placeholder="Intelligence Email">
-                <textarea name="Leak" required rows="3" class="md:col-span-2 cipher-input" placeholder="Operational Friction"></textarea>
-                
-                <input type="hidden" name="_next" value="https://YOUR_VERCEL_LINK_HERE">
-                
-                <button type="submit" class="md:col-span-2 py-6 border border-[#d4af37] text-[10px] uppercase tracking-[0.5em] hover:bg-[#d4af37] hover:text-black transition-all">
-                    Submit for Review
+            
+            <form action="https://form.typeform.com/to/D5UvobRw" method="POST" target="hidden_iframe" onsubmit="submitted=true;" class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <input type="text" name="Principal" required class="cipher-input" placeholder="Principal Identity">
+                <input type="email" name="Email" required class="cipher-input" placeholder="Intelligence Channel">
+                <textarea name="Leak" required rows="3" class="md:col-span-2 cipher-input" placeholder="Describe the Operational Leak"></textarea>
+                <button type="submit" id="submit-btn" class="md:col-span-2 py-6 border border-[#d4af37] text-[10px] uppercase tracking-[0.5em] hover:bg-[#d4af37] hover:text-black transition-all">
+                    Submit for Architecture Review
                 </button>
             </form>
+        </div>
+
+        <div id="success-section" class="hidden space-y-8 fade-in">
+            <h2 class="luxury-serif text-5xl text-white uppercase">Archive Secured</h2>
+            <p class="text-[#d4af37] tracking-[0.5em] text-[10px] uppercase">Audit in Progress</p>
+            <p class="text-xs opacity-40 max-w-sm mx-auto italic leading-relaxed">
+                Your infrastructure is being analyzed. If your business meets the threshold for sovereignty, a secure channel will be opened.
+            </p>
         </div>
     </main>
 
     <script>
+        let submitted = false;
+
         function handleAccess() {
             document.getElementById('hero-section').classList.add('hidden');
             document.getElementById('vetting-section').classList.remove('hidden');
             document.getElementById('vetting-section').classList.add('fade-in');
+            window.scrollTo(0, 0);
         }
+
+        function showSuccess() {
+            document.getElementById('vetting-section').classList.add('hidden');
+            document.getElementById('success-section').classList.remove('hidden');
+            document.getElementById('success-section').classList.add('fade-in');
+            window.scrollTo(0, 0);
+        }
+
+        // Add a listener to the submit button to show "Analyzing" immediately
+        document.querySelector('form').addEventListener('submit', function() {
+            const btn = document.getElementById('submit-btn');
+            btn.innerText = "ANALYZING NEURAL LEAKS...";
+            btn.disabled = true;
+            btn.style.opacity = "0.5";
+        });
     </script>
 </body>
 </html>
